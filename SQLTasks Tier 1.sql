@@ -97,7 +97,15 @@ the guest user's ID is always 0. Include in your output the name of the
 facility, the name of the member formatted as a single column, and the cost.
 Order by descending cost, and do not use any subqueries. */
 
-Answer: 
+Answer: SELECT f.name, concat(surname, ',', ' ', firstname) as member, (f.membercost*slots) as mcost, (f.guestcost*slots) as gcost, b.starttime
+        FROM Bookings as b
+        INNER Join Facilities as f
+        on b.facid = f.facid
+        INNER Join Members as m 
+        on b.memid = m.memid
+        Where (mcost > 30) 
+        and (gcost > 30) 
+        and (b.starttime BETWEEN {'2012-09-14 00:00:00'} AND {'2012-09-14 23:59:59'}) 
 
 /* Q9: This time, produce the same result as in Q8, but using a subquery. */
 
