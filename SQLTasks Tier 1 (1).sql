@@ -154,8 +154,7 @@ Order by revenue
 
 /* Q11: Produce a report of members and who recommended them in alphabetic surname,firstname order */
 
-Answer: 
-Select subquery.member as member, CASE WHEN subquery.recommendedby = subquery.memid THEN subquery.member ELSE null END AS recommender
+Answer: Select subquery.member as member, CASE WHEN subquery.recommendedby = subquery.memid THEN subquery.member ELSE null END AS recommender
 From (
     Select (surname, ',', ' ', firstname) as member, recommendedby, memid
     From Members
